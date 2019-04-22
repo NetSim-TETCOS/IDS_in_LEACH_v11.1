@@ -125,8 +125,11 @@ int fn_NetSim_LEACH_GetNextHop(NetSim_EVENTDETAILS* pstruEventDetails)
 	else
     {
 		ClusterId = fn_NetSim_LEACH_IdentifyCluster(pstruEventDetails->nDeviceId);
-		if(ClusterId < 2)
-			nextHop = CH[ClusterId + 2];
+		//if(ClusterId < 2)
+		if (ClusterId == 0)
+			nextHop = CH[1];
+		else if (ClusterId == 2)
+			nextHop = CH[3];
 		else
 			nextHop = get_first_dest_from_packet(pstruEventDetails->pPacket);
 	}
